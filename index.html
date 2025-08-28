@@ -57,11 +57,23 @@
     .form-container {
       flex-direction: row;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       background: linear-gradient(135deg, #1a1a1a, #333);
       color: white;
       padding: 20px;
       gap: 40px;
+    }
+    .form-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .top-text {
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #ffcc66;
     }
     form {
       background: rgba(0,0,0,0.6);
@@ -111,6 +123,36 @@
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.6);
     }
+
+    /* Дверь */
+    .door-container {
+      align-items: center;
+      justify-content: center;
+      background: black;
+      position: relative;
+    }
+    .door {
+      cursor: pointer;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+    .error-text {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+      font-weight: bold;
+      color: red;
+      text-shadow: 0 0 20px orange, 0 0 40px yellow;
+      animation: flicker 1s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
   </style>
 </head>
 <body>
@@ -125,23 +167,51 @@
 
   <!-- Регистрация -->
   <div class="page form-container" id="register-page">
-    <form onsubmit="event.preventDefault(); alert('Карта заказана!')">
-      <h2>Регистрация</h2>
-      <input type="text" placeholder="Имя" required>
-      <input type="text" placeholder="Фамилия" required>
-      <input type="number" placeholder="Год рождения" required>
-      <input type="text" placeholder="Данные карточки (например: 1234-5678-ВКУСНЯШКА)" required>
-      <button type="submit" class="btn-order">Заказать карту</button>
-      <button type="button" class="btn-back" onclick="showPage('main-page')">Назад</button>
-    </form>
-
+    <div class="form-wrapper">
+      <div class="top-text">Сайт держится исключительно на бюджете в виде тарелки карбонары</div>
+      <form id="regForm">
+        <h2>Регистрация</h2>
+        <input type="text" id="name" placeholder="Имя" required>
+        <input type="text" id="surname" placeholder="Фамилия" required>
+        <input type="number" id="year" placeholder="Год рождения" required>
+        <input type="text" id="card" placeholder="Данные карточки" required>
+        <button type="submit" class="btn-order">Заказать карту</button>
+        <button type="button" class="btn-back" onclick="showPage('main-page')">Назад</button>
+      </form>
+    </div>
     <img src="https://i.postimg.cc/66f704zW/image.png" alt="Фото справа" class="side-image">
+  </div>
+
+  <!-- Дверь -->
+  <div class="page door-container" id="door-page">
+    <img src="https://i.postimg.cc/Y2FcKQT7/Pngtree-wooden-doors-5610503.png" alt="Дверь" class="door" onclick="showError()">
+    <div class="error-text" id="error-text">ERROR 404</div>
   </div>
 
   <script>
     function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+    }
+
+    // Проверка формы
+    document.getElementById("regForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const surname = document.getElementById("surname").value.trim();
+      const year = document.getElementById("year").value.trim();
+      const card = document.getElementById("card").value.trim();
+
+      if(name && surname && year && card) {
+        showPage("door-page");
+      } else {
+        alert("Заполните все поля!");
+      }
+    });
+
+    // Ошибка 404
+    function showError() {
+      document.getElementById("error-text").style.display = "block";
     }
   </script>
 
