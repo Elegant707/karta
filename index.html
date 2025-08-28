@@ -29,6 +29,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
     .title {
       font-size: 28px;
@@ -51,6 +52,29 @@
     }
     .card:hover {
       transform: scale(1.05);
+    }
+
+    /* Блок с фотками снизу */
+    .bottom-photos {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 20px;
+    }
+    .photo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      font-size: 14px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+    .photo-box img {
+      width: 100px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+      margin-top: 5px;
     }
 
     /* Регистрация */
@@ -163,6 +187,18 @@
     <img src="https://i.postimg.cc/WzHqwMn5/photo-2025-08-28-02-45-21.jpg" 
          alt="Карта" class="card" width="300"
          onclick="showPage('register-page')">
+
+    <!-- Фотки снизу -->
+    <div class="bottom-photos">
+      <div class="photo-box">
+        <div>Семён Лобанов одобряет</div>
+        <img src="https://i.postimg.cc/VkgvqxFK/image.png" alt="Семён Лобанов">
+      </div>
+      <div class="photo-box">
+        <div>Клиенты довольны</div>
+        <img src="https://i.postimg.cc/G3PCTkKQ/image.png" alt="Клиенты довольны">
+      </div>
+    </div>
   </div>
 
   <!-- Регистрация -->
