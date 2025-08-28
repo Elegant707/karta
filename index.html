@@ -26,60 +26,49 @@
     /* Главная */
     .background {
       background: url("https://i.postimg.cc/xd2J5jvV/mollygram-com-Instagram-Post-mmoooorrii-3147686381845066308-12362718528.jpg") no-repeat center center/cover;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-    }
-    .title {
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-      animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
     }
     .card {
       cursor: pointer;
       transition: transform 0.3s;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 5;
     }
     .card:hover {
       transform: scale(1.05);
     }
+    .click-text {
+      position: absolute;
+      top: 10%;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 8px black;
+    }
 
-    /* Блок с фотками снизу */
+    /* Фото снизу */
     .bottom-images {
       position: absolute;
       bottom: 20px;
       left: 20px;
       display: flex;
-      gap: 30px;
+      gap: 40px;
       align-items: flex-end;
     }
-    .img-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .img-container {
       text-align: center;
+      color: white;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px black;
     }
-    .img-block img {
-      width: 400px; /* увеличено в 4 раза */
+    .bottom-img {
+      width: 160px; /* уменьшил с 200px → теперь не залезают на карту */
       border-radius: 15px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.6);
-    }
-    .img-block span {
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: white;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-      font-size: 20px;
     }
 
     /* Регистрация */
@@ -89,21 +78,7 @@
       align-items: center;
       background: linear-gradient(135deg, #1a1a1a, #333);
       color: white;
-      padding: 20px;
       position: relative;
-    }
-    .reg-note {
-      position: absolute;
-      top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #f5f5f5;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-    }
-    .form-content {
-      display: flex;
-      gap: 40px;
-      align-items: center;
     }
     form {
       background: rgba(0,0,0,0.6);
@@ -148,42 +123,40 @@
     .btn-back:hover {
       background: #d32f2f;
     }
-    .side-img {
-      max-width: 250px;
+
+    /* Доп. фото справа */
+    .side-image {
+      position: absolute;
+      right: 30px;
+      bottom: 50px;
+      width: 200px;
       border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
     }
 
     /* Дверь */
     .door-container {
       background: black;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       position: relative;
     }
     .door-container img {
+      width: 300px;
       cursor: pointer;
-      max-width: 400px;
-      border-radius: 10px;
       transition: transform 0.3s;
     }
     .door-container img:hover {
       transform: scale(1.05);
     }
     .error-text {
-      display: none;
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      color: red;
+      top: 40%;
       font-size: 80px;
       font-weight: bold;
-      justify-content: center;
-      align-items: center;
-      text-shadow: 0 0 25px orange, 0 0 50px red;
+      color: red;
+      text-shadow: 0 0 20px orange, 0 0 40px red, 0 0 60px darkred;
+      display: none;
     }
   </style>
 </head>
@@ -191,45 +164,42 @@
 
   <!-- Главная -->
   <div class="page background active" id="main-page">
-    <div class="title">Нажми на меня</div>
+    <div class="click-text">Нажми на меня</div>
     <img src="https://i.postimg.cc/WzHqwMn5/photo-2025-08-28-02-45-21.jpg" 
          alt="Карта" class="card" width="300"
          onclick="showPage('register-page')">
 
-    <!-- Нижние картинки -->
     <div class="bottom-images">
-      <div class="img-block">
-        <span>Семён Лобанов одобряет</span>
-        <img src="https://i.postimg.cc/VkgvqxFK/image.png" alt="Семён Лобанов">
+      <div class="img-container">
+        <div>Семён Лобанов одобряет</div>
+        <img src="https://i.postimg.cc/VkgvqxFK/image.png" class="bottom-img">
       </div>
-      <div class="img-block">
-        <span>Клиенты довольны</span>
-        <img src="https://i.postimg.cc/G3PCTkKQ/image.png" alt="Клиенты довольны">
+      <div class="img-container">
+        <div>Клиенты довольны</div>
+        <img src="https://i.postimg.cc/G3PCTkKQ/image.png" class="bottom-img">
       </div>
     </div>
   </div>
 
   <!-- Регистрация -->
   <div class="page form-container" id="register-page">
-    <div class="reg-note">Сайт держится исключительно на бюджете в виде тарелки карбонары</div>
-    <div class="form-content">
-      <form id="regForm">
-        <h2>Регистрация</h2>
-        <input type="text" id="fname" placeholder="Имя" required>
-        <input type="text" id="lname" placeholder="Фамилия" required>
-        <input type="number" id="year" placeholder="Год рождения" min="1900" max="2025" required>
-        <input type="text" id="card" placeholder="Данные карточки" required>
-        <button type="submit" class="btn-order">Заказать карту</button>
-        <button type="button" class="btn-back" onclick="showPage('main-page')">Назад</button>
-      </form>
-      <img src="https://i.postimg.cc/66f704zW/image.png" class="side-img" alt="Боковое фото">
-    </div>
+    <h3>Сайт держится исключительно на бюджете в виде тарелки карбонары</h3>
+    <form id="reg-form">
+      <h2>Регистрация</h2>
+      <input type="text" placeholder="Имя" required>
+      <input type="text" placeholder="Фамилия" required>
+      <input type="number" placeholder="Год рождения" min="1900" max="2025" required>
+      <input type="text" placeholder="Данные карточки" required>
+      <button type="submit" class="btn-order">Заказать карту</button>
+      <button type="button" class="btn-back" onclick="showPage('main-page')">Назад</button>
+    </form>
+    <img src="https://i.postimg.cc/66f704zW/image.png" alt="Смешная картинка" class="side-image">
   </div>
 
   <!-- Дверь -->
   <div class="page door-container" id="door-page">
     <img src="https://i.postimg.cc/Y2FcKQT7/Pngtree-wooden-doors-5610503.png" alt="Дверь" onclick="showError()">
-    <div class="error-text" id="errorText">ERROR 404</div>
+    <div class="error-text" id="error-text">ERROR 404</div>
   </div>
 
   <script>
@@ -238,24 +208,15 @@
       document.getElementById(id).classList.add('active');
     }
 
-    // Проверка формы
-    document.getElementById('regForm').addEventListener('submit', function(e) {
+    // Переход при заказе
+    document.getElementById("reg-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      let fname = document.getElementById('fname').value.trim();
-      let lname = document.getElementById('lname').value.trim();
-      let year = document.getElementById('year').value;
-      let card = document.getElementById('card').value.trim();
-
-      if (fname && lname && year >= 1900 && year <= 2025 && card) {
-        showPage('door-page');
-      } else {
-        alert("Пожалуйста, заполните все поля корректно!");
-      }
+      showPage('door-page');
     });
 
-    // Ошибка при клике на дверь
+    // ERROR 404 при клике на дверь
     function showError() {
-      document.getElementById('errorText').style.display = 'flex';
+      document.getElementById("error-text").style.display = "block";
     }
   </script>
 
