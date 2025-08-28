@@ -26,8 +26,22 @@
     /* Главная */
     .background {
       background: url("https://i.postimg.cc/xd2J5jvV/mollygram-com-Instagram-Post-mmoooorrii-3147686381845066308-12362718528.jpg") no-repeat center center/cover;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+    }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     .card {
       cursor: pointer;
@@ -96,6 +110,7 @@
 
   <!-- Главная -->
   <div class="page background active" id="main-page">
+    <div class="title">Нажми на меня</div>
     <img src="https://i.postimg.cc/WzHqwMn5/photo-2025-08-28-02-45-21.jpg" 
          alt="Карта" class="card" width="300"
          onclick="showPage('register-page')">
